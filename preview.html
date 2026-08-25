@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIE IGCSE Computer Science 0478 – Uses of Hexadecimal Quiz</title>
+<style>
+  :root{
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --text:#152238;
+    --muted:#64748b;
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --border:#dbe3ef;
+    --good:#15803d;
+    --good-bg:#ecfdf3;
+    --bad:#b91c1c;
+    --bad-bg:#fef2f2;
+    --accent:#eef4ff;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+  }
+
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:30px 18px 60px;
+  }
+
+  header{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    color:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 28px rgba(37,99,235,.18);
+    margin-bottom:22px;
+  }
+
+  header .tag{
+    display:inline-block;
+    font-size:.82rem;
+    font-weight:bold;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:999px;
+    padding:5px 10px;
+    margin-bottom:10px;
+  }
+
+  h1{
+    margin:0 0 8px;
+    font-size:clamp(1.8rem,4vw,2.6rem);
+  }
+
+  header p{
+    margin:0;
+    opacity:.95;
+  }
+
+  .info{
+    background:var(--accent);
+    border-left:5px solid var(--primary);
+    padding:15px 18px;
+    border-radius:10px;
+    margin-bottom:22px;
+  }
+
+  .progress-shell{
+    height:12px;
+    background:#dce6f5;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 4px;
+  }
+
+  #progressBar{
+    width:0%;
+    height:100%;
+    background:var(--primary);
+    transition:width .25s ease;
+  }
+
+  .question{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px;
+    margin:16px 0;
+    box-shadow:0 4px 14px rgba(15,23,42,.05);
+  }
+
+  .question h2{
+    font-size:1.08rem;
+    margin:0 0 14px;
+  }
+
+  .question-number{
+    color:var(--primary);
+    font-weight:700;
+    margin-right:5px;
+  }
+
+  .option{
+    display:block;
+    border:2px solid var(--border);
+    padding:12px 14px;
+    margin:9px 0;
+    border-radius:11px;
+    cursor:pointer;
+    transition:.15s ease;
+    background:white;
+  }
+
+  .option:hover{
+    border-color:#93b4f5;
+    background:#f8fbff;
+  }
+
+  .option input{
+    margin-right:10px;
+  }
+
+  .option.correct{
+    border-color:var(--good);
+    background:var(--good-bg);
+  }
+
+  .option.incorrect{
+    border-color:var(--bad);
+    background:var(--bad-bg);
+  }
+
+  .feedback{
+    display:none;
+    margin-top:12px;
+    padding:11px 13px;
+    border-radius:9px;
+    font-size:.95rem;
+  }
+
+  .feedback.good{
+    display:block;
+    background:var(--good-bg);
+    color:#14532d;
+  }
+
+  .feedback.bad{
+    display:block;
+    background:var(--bad-bg);
+    color:#7f1d1d;
+  }
+
+  .actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:24px;
+  }
+
+  button{
+    appearance:none;
+    border:0;
+    border-radius:10px;
+    padding:12px 18px;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  #submitBtn{
+    background:var(--primary);
+    color:white;
+  }
+
+  #submitBtn:hover{background:var(--primary-dark)}
+
+  #retryBtn{
+    background:#e2e8f0;
+    color:var(--text);
+    display:none;
+  }
+
+  #result{
+    display:none;
+    margin-top:22px;
+    padding:22px;
+    border-radius:16px;
+    background:white;
+    border:1px solid var(--border);
+  }
+
+  #result h2{margin-top:0}
+
+  .score{
+    font-size:2rem;
+    font-weight:800;
+    color:var(--primary);
+  }
+
+  .exam-tip{
+    background:#fff7ed;
+    border-left:5px solid #f97316;
+    padding:14px 16px;
+    border-radius:10px;
+    margin-top:20px;
+  }
+
+  code{
+    background:#eaf0f8;
+    padding:2px 6px;
+    border-radius:5px;
+    font-family:Consolas, monospace;
+  }
+
+  footer{
+    color:var(--muted);
+    font-size:.85rem;
+    text-align:center;
+    margin-top:28px;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header>
+  <div class="tag">Cambridge IGCSE Computer Science 0478</div>
+  <h1>Uses of Hexadecimal Quiz</h1>
+  <p>Test your understanding of why hexadecimal is used in computer systems.</p>
+</header>
+
+<div class="info">
+  <strong>Instructions:</strong> Answer all 10 questions. Choose one answer for each question, then select
+  <strong>Check My Answers</strong>. You will receive a score and an explanation for every question.
+  <div class="progress-shell"><div id="progressBar"></div></div>
+  <small id="progressText">0 of 10 questions answered</small>
+</div>
+
+<form id="quizForm"></form>
+
+<div class="actions">
+  <button type="button" id="submitBtn">Check My Answers</button>
+  <button type="button" id="retryBtn">Try Again</button>
+</div>
+
+<div id="result"></div>
+
+<div class="exam-tip">
+  <strong>0478 Exam Tip:</strong> A common question asks why hexadecimal is used rather than binary.
+  Hexadecimal is shorter, easier for humans to read and write, and less likely to result in transcription errors,
+  while still mapping neatly to binary because one hexadecimal digit represents four binary bits.
+</div>
+
+<footer>
+  IGCSE Computer Science 0478 • Hexadecimal practice
+</footer>
+</div>
+
+<script>
+const questions = [
+  {
+    q: "Why is hexadecimal often used to display long binary values?",
+    options: [
+      "Hexadecimal values always use less memory than binary values",
+      "Hexadecimal is shorter and easier for humans to read than long binary strings",
+      "Processors can only understand hexadecimal",
+      "Hexadecimal can represent numbers that binary cannot"
+    ],
+    answer: 1,
+    explanation: "Hexadecimal provides a compact, human-readable way of representing binary data. Each hexadecimal digit represents exactly four binary bits."
+  },
+  {
+    q: "Which of the following is a typical use of hexadecimal in computer systems?",
+    options: [
+      "Writing ordinary paragraphs in a word processor",
+      "Representing memory addresses",
+      "Measuring processor clock speed",
+      "Naming folders on a computer"
+    ],
+    answer: 1,
+    explanation: "Memory addresses are commonly shown in hexadecimal because the notation is much shorter than the equivalent binary address."
+  },
+  {
+    q: "A colour in HTML/CSS is written as #FF0000. What does the hexadecimal value represent?",
+    options: [
+      "The amount of storage used by the webpage",
+      "The red, green and blue components of a colour",
+      "The IP address of the web server",
+      "The size of the webpage in bytes"
+    ],
+    answer: 1,
+    explanation: "Hexadecimal colour codes represent RGB values. #FF0000 means maximum red, no green and no blue."
+  },
+  {
+    q: "Which item is commonly written using pairs of hexadecimal digits such as 3C:52:82:A1:9F:07?",
+    options: [
+      "A MAC address",
+      "A decimal file size",
+      "A CPU clock frequency",
+      "A username"
+    ],
+    answer: 0,
+    explanation: "MAC addresses are commonly displayed as groups or pairs of hexadecimal digits because this compactly represents the underlying binary value."
+  },
+  {
+    q: "Why is hexadecimal useful when viewing a memory dump?",
+    options: [
+      "It automatically repairs corrupted memory",
+      "It gives a compact representation of the binary data stored in memory",
+      "It converts all data into text",
+      "It increases the computer's RAM capacity"
+    ],
+    answer: 1,
+    explanation: "A memory dump contains large amounts of binary data. Hexadecimal makes those bit patterns much easier for a human to inspect."
+  },
+  {
+    q: "Which type of network address may contain hexadecimal digits such as 2001:0db8:85a3::8a2e:0370:7334?",
+    options: [
+      "IPv4 address",
+      "IPv6 address",
+      "Telephone number",
+      "Port number only"
+    ],
+    answer: 1,
+    explanation: "IPv6 addresses are written using groups of hexadecimal digits, providing a compact way of representing a 128-bit address."
+  },
+  {
+    q: "What is the relationship between one hexadecimal digit and binary?",
+    options: [
+      "One hexadecimal digit represents 2 binary bits",
+      "One hexadecimal digit represents 4 binary bits",
+      "One hexadecimal digit represents 8 binary bits",
+      "One hexadecimal digit represents 16 binary bits"
+    ],
+    answer: 1,
+    explanation: "There are 16 possible hexadecimal digits (0–F), and 4 bits can also represent 16 different patterns. Therefore one hexadecimal digit maps to four bits."
+  },
+  {
+    q: "A programmer sees the value 7F in a low-level diagnostic display. What is the main reason hexadecimal is suitable here?",
+    options: [
+      "It is a compact way to represent a binary value",
+      "It makes the computer run faster",
+      "It encrypts the value automatically",
+      "It stores the value as a picture"
+    ],
+    answer: 0,
+    explanation: "Low-level diagnostic tools often display values in hexadecimal because it gives a compact representation that maps directly to binary."
+  },
+  {
+    q: "Which statement about hexadecimal is correct?",
+    options: [
+      "Hexadecimal replaces binary inside the processor",
+      "Hexadecimal is mainly a human-friendly representation of binary data",
+      "Hexadecimal can only represent values from 0 to 255",
+      "Hexadecimal is used because computers cannot store binary"
+    ],
+    answer: 1,
+    explanation: "Computers still store and process binary. Hexadecimal is mainly used to make binary values easier for people to read, write and interpret."
+  },
+  {
+    q: "Which list contains only common uses of hexadecimal relevant to IGCSE Computer Science?",
+    options: [
+      "Memory addresses, MAC addresses, IPv6 addresses and colour codes",
+      "Keyboard layouts, printer paper sizes, usernames and passwords",
+      "CPU temperature, screen width, filenames and folder names",
+      "Word counts, decimal prices, dates and ordinary sentences"
+    ],
+    answer: 0,
+    explanation: "Hexadecimal is commonly used for memory addresses and memory dumps, MAC addresses, IPv6 addresses, and RGB/HTML colour codes."
+  }
+];
+
+const form = document.getElementById("quizForm");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const result = document.getElementById("result");
+const submitBtn = document.getElementById("submitBtn");
+const retryBtn = document.getElementById("retryBtn");
+
+function renderQuiz(){
+  form.innerHTML = "";
+  questions.forEach((item, index) => {
+    const section = document.createElement("section");
+    section.className = "question";
+    section.id = `question-${index}`;
+
+    const h2 = document.createElement("h2");
+    h2.innerHTML = `<span class="question-number">Question ${index + 1}.</span> ${item.q}`;
+    section.appendChild(h2);
+
+    item.options.forEach((option, optionIndex) => {
+      const label = document.createElement("label");
+      label.className = "option";
+      label.innerHTML = `
+        <input type="radio" name="q${index}" value="${optionIndex}">
+        ${option}
+      `;
+      section.appendChild(label);
+    });
+
+    const feedback = document.createElement("div");
+    feedback.className = "feedback";
+    feedback.id = `feedback-${index}`;
+    section.appendChild(feedback);
+
+    form.appendChild(section);
+  });
+
+  form.querySelectorAll('input[type="radio"]').forEach(input => {
+    input.addEventListener("change", updateProgress);
+  });
+}
+
+function updateProgress(){
+  let answered = 0;
+  questions.forEach((_, index) => {
+    if(form.querySelector(`input[name="q${index}"]:checked`)) answered++;
+  });
+  progressBar.style.width = `${(answered / questions.length) * 100}%`;
+  progressText.textContent = `${answered} of ${questions.length} questions answered`;
+}
+
+submitBtn.addEventListener("click", () => {
+  let answered = 0;
+  let score = 0;
+
+  questions.forEach((item, index) => {
+    const selected = form.querySelector(`input[name="q${index}"]:checked`);
+    const section = document.getElementById(`question-${index}`);
+    const labels = section.querySelectorAll(".option");
+    const feedback = document.getElementById(`feedback-${index}`);
+
+    labels.forEach(label => label.classList.remove("correct", "incorrect"));
+
+    if(selected){
+      answered++;
+      const chosen = Number(selected.value);
+
+      labels[item.answer].classList.add("correct");
+
+      if(chosen === item.answer){
+        score++;
+        feedback.className = "feedback good";
+        feedback.innerHTML = `<strong>Correct.</strong> ${item.explanation}`;
+      } else {
+        labels[chosen].classList.add("incorrect");
+        feedback.className = "feedback bad";
+        feedback.innerHTML = `<strong>Not quite.</strong> ${item.explanation}`;
+      }
+    } else {
+      feedback.className = "feedback bad";
+      feedback.innerHTML = "<strong>No answer selected.</strong> Choose an answer before checking your work.";
+    }
+  });
+
+  if(answered < questions.length){
+    result.style.display = "block";
+    result.innerHTML = `
+      <h2>Quiz incomplete</h2>
+      <p>You have answered <strong>${answered} of ${questions.length}</strong> questions. Complete the unanswered questions and check again.</p>
+    `;
+    result.scrollIntoView({behavior:"smooth", block:"center"});
+    return;
+  }
+
+  const percent = Math.round((score / questions.length) * 100);
+  let message = "";
+
+  if(percent === 100){
+    message = "Excellent — you have a very secure understanding of the uses of hexadecimal.";
+  } else if(percent >= 80){
+    message = "Very good — review any incorrect answers and you should be exam-ready on this topic.";
+  } else if(percent >= 60){
+    message = "Good start — revisit the main applications of hexadecimal and try the quiz again.";
+  } else {
+    message = "More revision needed — focus on memory addresses, MAC addresses, IPv6 and colour codes.";
+  }
+
+  result.style.display = "block";
+  result.innerHTML = `
+    <h2>Your Result</h2>
+    <div class="score">${score} / ${questions.length} (${percent}%)</div>
+    <p>${message}</p>
+  `;
+
+  retryBtn.style.display = "inline-block";
+  submitBtn.textContent = "Check Again";
+  result.scrollIntoView({behavior:"smooth", block:"center"});
+});
+
+retryBtn.addEventListener("click", () => {
+  form.reset();
+  document.querySelectorAll(".option").forEach(el => el.classList.remove("correct","incorrect"));
+  document.querySelectorAll(".feedback").forEach(el => {
+    el.className = "feedback";
+    el.innerHTML = "";
+  });
+  result.style.display = "none";
+  retryBtn.style.display = "none";
+  submitBtn.textContent = "Check My Answers";
+  updateProgress();
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+
+renderQuiz();
+updateProgress();
+</script>
+</body>
+</html>
